@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "dependencies": {
-        "shared": "workspace:*"
+        "shared": "workspace:../shared"
     },
     "module": "index.ts",
     "keywords": [],
