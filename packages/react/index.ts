@@ -1,8 +1,8 @@
 // React
 
-import { jsx } from './src/jsx';
+import { jsxDEV } from './src/jsx';
 
 export default {
-    version: '18.x',
-    createElement: jsx
+    version: '1.0.0',
+    createElement: jsxDEV
 };
