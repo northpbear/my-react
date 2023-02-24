@@ -1,14 +1,37 @@
 import { beginWork } from './beginWork';
 import { completeWork } from './completeWork';
-import { FiberNode } from './fiber';
+import { createWorkInProgress, FiberNode, FiberRootNode } from './fiber';
+import { HostRoot } from './workTags';
 
 let workInprogress: FiberNode | null = null;
 
-function prepareFreshStack(fiber: FiberNode) {
+function prepareFreshStack(root: FiberRootNode) {
     // 初始化
-    workInprogress = fiber;
+    workInprogress = createWorkInProgress(root.current, {});
 }
-function renderRoot(root: FiberNode) {
+
+export function scheduleUpdateOnFiber(fiber: FiberNode) {
+    // 首屏渲染 入参fiber是hostRootFiber，其余情况都是Component对应的Fiber
+
+    // TODO 实现调度
+    const root = markUpdateFromFiberToRoot(fiber);
+    renderRoot(root);
+}
+function markUpdateFromFiberToRoot(fiber: FiberNode) {
+    let node = fiber;
+    let parent = node.return;
+    while (parent !== null) {
+        // hostRootFiber没有return属性，也就没有parent，不会进入循环中
+        // hostRootFiber有一个stateNode属性指向fiberRootNode
+        node = parent;
+        parent = parent.return;
+    }
+    if (node.tag === HostRoot) {
+        return node.stateNode;
+    }
+    return null;
+}
+function renderRoot(root: FiberRootNode) {
     prepareFreshStack(root);
     do {
         try {

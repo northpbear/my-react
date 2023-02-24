@@ -1,1 +1,3 @@
-export const completeWork = () => {};
+export const completeWork = () => {
+    // 空
+};

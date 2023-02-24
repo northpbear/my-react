@@ -1,5 +1,7 @@
 import { Key, Props } from 'shared/reactTypes';
 import { Flags, NoFlags } from './fiberFlags';
+import { Container } from './hostConfig';
+import { UpdateQueue } from './updateQueue';
 import { WorkTag } from './workTags';
 
 export class FiberNode {
@@ -15,8 +17,11 @@ export class FiberNode {
     index: number;
 
     memoizedProps: Props | null;
+    memoizedState: any;
     alternate: FiberNode | null;
     flags: Flags;
+
+    updateQueue: unknown;
 
     constructor(tag: WorkTag, pendingProps: Props, key: Key) {
         // 节点类型
@@ -42,9 +47,49 @@ export class FiberNode {
         // 工作单元相关字段：
         this.pendingProps = pendingProps;
         this.memoizedProps = null;
+        this.memoizedState = null;
+        this.updateQueue = null;
 
         this.alternate = null;
         // 副作用
         this.flags = NoFlags;
     }
 }
+export class FiberRootNode {
+    container: Container;
+    current: FiberNode;
+    finishedWork: FiberNode | null;
+    constructor(container: Container, hostRootFiber: FiberNode) {
+        this.container = container;
+        this.current = hostRootFiber;
+        hostRootFiber.stateNode = this; // this就是FiberRootNode实例
+        this.finishedWork = null;
+    }
+}
+
+export const createWorkInProgress = (
+    current: FiberNode,
+    pendingProps: Props
+): FiberNode => {
+    let wip = current.alternate;
+
+    if (wip === null) {
+        // mount 首次渲染的时候是没有wip树的
+        wip = new FiberNode(current.tag, pendingProps, current.key);
+        wip.stateNode = current.stateNode;
+
+        wip.alternate = current;
+        current.alternate = wip;
+    } else {
+        // update
+        wip.pendingProps = pendingProps;
+        wip.flags = NoFlags;
+    }
+    wip.type = current.type;
+    wip.updateQueue = current.updateQueue;
+    wip.child = current.child;
+    wip.memoizedProps = current.memoizedProps;
+    wip.memoizedState = current.memoizedState;
+
+    return wip;
+};
