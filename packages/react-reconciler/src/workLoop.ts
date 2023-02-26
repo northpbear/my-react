@@ -43,6 +43,11 @@ function renderRoot(root: FiberRootNode) {
             workInprogress = null;
         }
     } while (true);
+
+    const finishedWork = root.current.alternate;
+    root.finishedWork = finishedWork;
+
+    // commitRoot(root);
 }
 function workLoop() {
     // 深度优先遍历
