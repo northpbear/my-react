@@ -54,7 +54,7 @@ function ChildReconciler(shouldTrackFeeects: boolean) {
             }
         }
         // TODO 多节点
-        
+
         if (typeof newChild === 'string' || typeof newChild === 'number') {
             return placeSingleChild(
                 reconcileSingleTextNode(returnFiber, currentFiber, newChild)

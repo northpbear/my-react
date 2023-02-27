@@ -1,6 +1,6 @@
 import { Key, Props, ReactElementType } from 'shared/reactTypes';
 import { Flags, NoFlags } from './fiberFlags';
-import { Container } from './hostConfig';
+import { Container } from 'hostConfig';
 import { UpdateQueue } from './updateQueue';
 import { FunctionComponent, HostComponent, WorkTag } from './workTags';
 
