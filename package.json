@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "lint": "eslint --ext .ts,.jsx,.tsx --fix --quiet ./packages",
-        "build:dev": "rimraf dist && rollup --config scripts/rollup/dev.config.js --bundleConfigAsCjs"
+        "build:dev": "rimraf dist && rollup --config scripts/rollup/dev.config.js --bundleConfigAsCjs",
+        "demo": "vite serve demos/test-fc --config scripts/vite/vite.config.js --force"
     },
     "keywords": [],
     "author": "",
@@ -28,6 +29,10 @@
         "rimraf": "^4.1.2",
         "rollup": "^3.17.2",
         "rollup-plugin-generate-package-json": "^3.2.0",
-        "typescript": "^4.9.5"
+        "typescript": "^4.9.5",
+        "@types/react": "^18.0.27",
+        "@types/react-dom": "^18.0.10",
+        "@vitejs/plugin-react": "^3.1.0",
+        "vite": "^4.1.0"
     }
 }

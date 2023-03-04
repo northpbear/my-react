@@ -17,7 +17,7 @@ export class FiberNode {
     index: number;
 
     memoizedProps: Props | null;
-    memoizedState: any;
+    memoizedState: any; // 在函数组件中 该字段储存的是函数组件内部调用的hook的链表
     alternate: FiberNode | null;
     flags: Flags;
     subTreeFlags: Flags;
