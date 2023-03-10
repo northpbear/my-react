@@ -23,6 +23,7 @@ export class FiberNode {
     subTreeFlags: Flags;
 
     updateQueue: unknown;
+    deletions: FiberNode[] | null;
 
     constructor(tag: WorkTag, pendingProps: Props, key: Key) {
         // 节点类型
@@ -55,6 +56,7 @@ export class FiberNode {
         // 副作用
         this.flags = NoFlags;
         this.subTreeFlags = NoFlags;
+        this.deletions = null;
     }
 }
 export class FiberRootNode {
@@ -69,6 +71,12 @@ export class FiberRootNode {
     }
 }
 
+/**
+ * 如果current和wip都存在，则会复用，不会再创造新的fiber节点
+ * @param current 这个参数不一定是current Fiber，也可能是wip Fiber
+ * @param pendingProps
+ * @returns 第一个形参current的alternate，也就是另一棵Fiber树的节点
+ */
 export const createWorkInProgress = (
     current: FiberNode,
     pendingProps: Props
@@ -87,6 +95,7 @@ export const createWorkInProgress = (
         wip.pendingProps = pendingProps;
         wip.flags = NoFlags;
         wip.subTreeFlags = NoFlags;
+        wip.deletions = null;
     }
     wip.type = current.type;
     wip.updateQueue = current.updateQueue;

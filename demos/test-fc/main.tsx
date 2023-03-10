@@ -4,11 +4,18 @@ import ReactDOM from 'react-dom/client';
 
 function App() {
     const [num, setNumber] = useState(0);
-    return (
+    window.setNumber = setNumber;
+    return num === 3 ? (
+        <Child />
+    ) : (
         <div>
             <span>{num}</span>
         </div>
     );
+}
+
+function Child() {
+    return <span>child</span>;
 }
 
 console.log(`React`, React);

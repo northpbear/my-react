@@ -16,11 +16,11 @@ export const beginWork = (wip: FiberNode) => {
         case HostRoot:
             return updateHostRoot(wip);
         case HostComponent:
-            return updateHostCpmponent(wip);
+            return updateHostComponent(wip);
         case HostText:
             return null;
         case FunctionComponent:
-            return updateFunctionCpmponent(wip);
+            return updateFunctionComponent(wip);
 
         default:
             if (__DEV__) {
@@ -31,7 +31,7 @@ export const beginWork = (wip: FiberNode) => {
     return null;
 };
 
-function updateFunctionCpmponent(wip: FiberNode) {
+function updateFunctionComponent(wip: FiberNode) {
     const nextChildren = renderWithHooks(wip);
     reconcileChildren(wip, nextChildren);
     return wip.child;
@@ -50,7 +50,7 @@ function updateHostRoot(wip: FiberNode) {
     return wip.child;
 }
 
-function updateHostCpmponent(wip: FiberNode) {
+function updateHostComponent(wip: FiberNode) {
     const nextProps = wip.pendingProps;
     const nextChildren = nextProps.children;
     reconcileChildren(wip, nextChildren);
