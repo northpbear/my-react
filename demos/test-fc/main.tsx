@@ -4,12 +4,13 @@ import ReactDOM from 'react-dom/client';
 
 function App() {
     const [num, setNumber] = useState(0);
-    window.setNumber = setNumber;
-    return num === 3 ? (
-        <Child />
-    ) : (
-        <div>
-            <span>{num}</span>
+    return (
+        <div
+            onClick={() => {
+                setNumber((p) => p + 1);
+            }}
+        >
+            {num}
         </div>
     );
 }
