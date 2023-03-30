@@ -114,7 +114,7 @@ function ChildReconciler(shouldTrackEffects: boolean) {
         newChild: any[]
     ) {
         // 最后一个可复用fiber在current中的索引位置
-        let lastPlacedIndex: number = 0;
+        let lastPlacedIndex = 0;
         // 创建的最后一个fiber
         let lastNewFiber: FiberNode | null = null;
         // 创建的第一个fiber
@@ -186,7 +186,7 @@ function ChildReconciler(shouldTrackEffects: boolean) {
         index: number,
         element: any
     ): FiberNode | null {
-        const keyToUse = element.key === null ? element.key : index;
+        const keyToUse = element.key !== null ? element.key : index;
         const before = existingChildren.get(keyToUse);
         if (typeof element === 'string' || typeof element === 'number') {
             // HostText
@@ -205,7 +205,7 @@ function ChildReconciler(shouldTrackEffects: boolean) {
                     if (before) {
                         if (before.type === element.type) {
                             existingChildren.delete(keyToUse);
-                            return useFiber(before, element.type);
+                            return useFiber(before, element.props);
                         }
                     }
                     return createFiberFromElement(element);
@@ -243,10 +243,14 @@ function ChildReconciler(shouldTrackEffects: boolean) {
                     }
                     break;
             }
-        }
-        // 多节点
-        if (Array.isArray(newChild)) {
-            return reconcileChildrenArray(returnFiber, currentFiber, newChild);
+            // 多节点
+            if (Array.isArray(newChild)) {
+                return reconcileChildrenArray(
+                    returnFiber,
+                    currentFiber,
+                    newChild
+                );
+            }
         }
 
         if (typeof newChild === 'string' || typeof newChild === 'number') {

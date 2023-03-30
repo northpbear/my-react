@@ -102,7 +102,6 @@ export const createWorkInProgress = (
     wip.child = current.child;
     wip.memoizedProps = current.memoizedProps;
     wip.memoizedState = current.memoizedState;
-
     return wip;
 };
 

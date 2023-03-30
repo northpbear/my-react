@@ -9,7 +9,8 @@ export default defineConfig({
     plugins: [
         react(),
         replace({
-            __DEV__: true
+            __DEV__: true,
+            preventAssignment: true
         })
     ],
     resolve: {
