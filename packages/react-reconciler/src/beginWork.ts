@@ -4,6 +4,7 @@ import { FiberNode } from './fiber';
 import { renderWithHooks } from './fiberHooks';
 import { processUpdateQueue, UpdateQueue } from './updateQueue';
 import {
+    Fragment,
     FunctionComponent,
     HostComponent,
     HostRoot,
@@ -21,6 +22,8 @@ export const beginWork = (wip: FiberNode) => {
             return null;
         case FunctionComponent:
             return updateFunctionComponent(wip);
+        case Fragment:
+            return updateFragment(wip);
 
         default:
             if (__DEV__) {
@@ -30,6 +33,12 @@ export const beginWork = (wip: FiberNode) => {
     }
     return null;
 };
+
+function updateFragment(wip: FiberNode) {
+    const nextChildren = wip.pendingProps;
+    reconcileChildren(wip, nextChildren);
+    return wip.child;
+}
 
 function updateFunctionComponent(wip: FiberNode) {
     const nextChildren = renderWithHooks(wip);
@@ -57,7 +66,7 @@ function updateHostComponent(wip: FiberNode) {
     return wip.child;
 }
 
-function reconcileChildren(wip: FiberNode, children?: ReactElementType) {
+function reconcileChildren(wip: FiberNode, children?: any) {
     const current = wip.alternate;
     if (current !== null) {
         // update

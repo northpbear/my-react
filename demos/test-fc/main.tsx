@@ -9,7 +9,9 @@ function App() {
             ? [<li key="1">1</li>, <li key="2">2</li>, <li key="3">3</li>]
             : [<li key="3">3</li>, <li key="2">2</li>, <li key="1">1</li>];
     return (
-        <ul onClick={() => setNum(num + 1)} className="App">
+        <ul onClick={() => setNum((prev) => prev + 1)}>
+            <li>5</li>
+            <li>4</li>
             {arr}
         </ul>
     );
