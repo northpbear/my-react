@@ -38,6 +38,10 @@ importers:
         specifier: ^8.23.0
         version: 8.23.0(eslint@9.20.0(jiti@2.4.2))(typescript@5.7.3)
 
+  packages/react: {}
+
+  packages/shared: {}
+
 packages:
   "@babel/code-frame@7.26.2":
     resolution:
