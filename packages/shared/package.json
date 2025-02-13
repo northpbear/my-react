@@ -2,8 +2,6 @@
   "name": "@my-react/shared",
   "version": "1.0.0",
   "description": "shared",
-  "module": "index.ts",
-  "keywords": [],
   "author": "",
   "license": "ISC"
 }
