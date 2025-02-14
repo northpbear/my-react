@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "commitlint": "commitlint --edit"
+    "commitlint": "commitlint --edit",
+    "build:dev": "rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js"
   },
   "keywords": [],
   "author": "",
@@ -14,11 +14,14 @@
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
     "@eslint/js": "^9.20.0",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-typescript": "^12.1.2",
     "eslint": "^9.20.0",
     "globals": "^15.14.0",
     "husky": "^9.1.7",
     "prettier": "^3.5.0",
     "rollup": "^4.34.6",
+    "tslib": "^2.8.1",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.23.0"
   }

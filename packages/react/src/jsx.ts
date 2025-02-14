@@ -1,6 +1,6 @@
-import type { ReactElement as ReactElementType } from "shared/ReactElementType";
-import { REACT_ELEMENT_TYPE } from "shared/ReactSymbols";
-import { Type, Key, Ref, Props } from "shared/ReactTypes";
+import type { ReactElement as ReactElementType } from "@my-react/shared/ReactElementType";
+import { REACT_ELEMENT_TYPE } from "@my-react/shared/ReactSymbols";
+import { Type, Key, Ref, Props } from "@my-react/shared/ReactTypes";
 
 const RESERVED_PROPS = {
   key: true,
@@ -19,7 +19,7 @@ const ReactElement = function (
   type: Type,
   key: Key,
   ref: Ref,
-  props: Props
+  props: Props,
 ): ReactElementType {
   const element = {
     $$typeof: REACT_ELEMENT_TYPE,
@@ -82,3 +82,5 @@ export const jsx = function (type: Type, config: any, maybeKey?: Key) {
 
   return ReactElement(type, key, ref, props);
 };
+
+export const jsxDEV = jsx;
