@@ -19,7 +19,7 @@ const ReactElement = function (
   type: Type,
   key: Key,
   ref: Ref,
-  props: Props,
+  props: Props
 ): ReactElementType {
   const element = {
     $$typeof: REACT_ELEMENT_TYPE,
@@ -30,6 +30,7 @@ const ReactElement = function (
     props,
 
     __north_p_bear: true as const,
+    __jsx_runtime: "classic",
   };
 
   if (Object.freeze) {

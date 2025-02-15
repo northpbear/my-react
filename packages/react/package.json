@@ -2,11 +2,29 @@
   "name": "@my-react/react",
   "version": "1.0.0",
   "description": "react",
-  "module": "index.ts",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./jsx-runtime": {
+      "import": "./dist/jsx-runtime.js",
+      "require": "./dist/jsx-runtime.js"
+    },
+    "./jsx-dev-runtime": {
+      "import": "./dist/jsx-dev-runtime.js",
+      "require": "./dist/jsx-dev-runtime.js"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@my-react/shared": "workspace:*"
+  },
+  "volta": {
+    "node": "18.20.6"
   }
 }
