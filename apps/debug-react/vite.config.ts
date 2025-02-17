@@ -4,6 +4,9 @@ import { viteExternalsPlugin } from "vite-plugin-externals";
 
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    sourcemap: true
+  },
   plugins: [
     react({
       jsxRuntime: "classic",
