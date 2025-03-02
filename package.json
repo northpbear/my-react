@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "commitlint": "commitlint --edit",
-    "build:dev": "rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js"
+    "build:dev": "rollup --bundleConfigAsCjs --config scripts/rollup/react.config.js",
+    "build:dom:dev": "rollup --bundleConfigAsCjs --config scripts/rollup/react-dom.config.js"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,13 @@
+<mxfile host="65bd71144e">
+    <diagram id="1dBRaTBTVpNJ5PXBxD0f" name="Page-1">
+        <mxGraphModel dx="1251" dy="719" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="flowchart TD&#xa;    subgraph main.js&#xa;        root:::constVarStyle&#xa;        subgraph react&#xa;            &#xa;        end&#xa;        subgraph reactReconciler&#xa;            createContainer --&gt; createFiberRoot --&gt; FiberRootNode&#xa;            uninitializedFiber:::constVarStyle --&gt; createHostRootFiber --&gt; createFiber --&gt; FiberNode[&quot;FiberNode(HostRoot)&quot;]&#xa;            initialState[&quot;initialState: RootState&quot;]:::constVarStyle&#xa;            createHostRootFiber --&gt; initializeUpdateQueue&#xa;        end&#xa;        subgraph reactDom&#xa;            createRoot&#xa;        end&#xa;        root --&gt; createRoot --&gt; createContainer&#xa;        root --current--&gt; uninitializedFiber&#xa;        uninitializedFiber --stateNode--&gt; root&#xa;        uninitializedFiber --memoizedState--&gt; initialState&#xa;    end&#xa;&#xa;    classDef constVarStyle fill:#007fff, color:#fff" style="shadow=0;dashed=0;align=left;strokeWidth=1;shape=mxgraph.mermaid.abstract.mermaid;labelBackgroundColor=#ffffff;noLabel=1;theme=default;" vertex="1" parent="1">
+                    <mxGeometry x="360" y="220" width="100" height="200" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

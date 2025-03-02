@@ -1,0 +1,9 @@
+{
+  "name": "@my-react/react-dom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@my-react/react-reconciler": "workspace:*"
+  }
+}
